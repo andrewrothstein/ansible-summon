@@ -1,0 +1,56 @@
+---
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: check for install
+  become: yes
+  stat:
+    path: '{{ summon_install_dir }}'
+  changed_when: False
+  register: summon_binary
+- when: not summon_binary.stat.exists
+  block:
+    - name: download archive
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{ summon_url }}'
+        dest: /tmp/{{ summon_archive }}
+        checksum: '{{ summon_checksum }}'
+        mode: 0644
+    - name: mkdir install dir
+      become: yes
+      become_user: root
+      file:
+        path: '{{ summon_install_dir }}'
+        state: directory
+        mode: 0755
+    - name: unarchive
+      become: yes
+      become_user: root
+      unarchive:
+        remote_src: yes
+        src: /tmp/{{ summon_archive }}
+        dest: '{{ summon_install_dir }}'
+        creates: '{{ summon_install_dir }}/summon'
+  always:
+    - name: cleanup
+      become: yes
+      become_user: root
+      file:
+        path: /tmp/{{ summon_archive }}
+        state: absent
+- name: link
+  become: yes
+  become_user: root
+  file:
+    src: '{{ summon_install_dir }}/summon'
+    dest: '{{ summon_parent_install_dir }}/bin/summon'
+    state: link

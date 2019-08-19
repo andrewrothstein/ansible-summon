@@ -1,0 +1,20 @@
+---
+# defaults file for summon
+summon_ver: v0.7.0
+
+summon_os: linux
+summon_arch: amd64
+summon_archivetype: tar.gz
+
+summon_mirror: https://github.com/cyberark/summon/releases/download
+
+summon_checksums:
+  v0.7.0:
+    # https://github.com/cyberark/summon/releases/download/v0.7.0/summon-darwin-amd64.tar.gz
+    darwin-amd64: sha256:ca408ffeb888990b5183080e0fa3d6b137cd834f00b1d3d26b568e73648c9d8a
+    # https://github.com/cyberark/summon/releases/download/v0.7.0/summon-linux-amd64.tar.gz
+    linux-amd64: sha256:bf25218a3aa9b14a85282e95ec3607efef722d3ed3989d0373b378245bf54dbc
+    # https://github.com/cyberark/summon/releases/download/v0.7.0/summon-windows-amd64.zip
+    windows-amd64: sha256:ecc81dd6f74df76f32e768a4fce566d4db92959d50add3ba716b48eedf7fd6c3
+
+summon_parent_install_dir: /usr/local
