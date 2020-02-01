@@ -1,32 +1,36 @@
 #!/usr/bin/env sh
-VER=v0.7.0
+set -e
 DIR=~/Downloads
-MIRROR=https://github.com/cyberark/summon/releases/download/${VER}
-
-RSHAFILE=SHA256SUMS.txt
-LSHAFILE=$DIR/summon-${VER}-SHA256SUMS.txt
-
-if [ ! -e $LSHAFILE ];
-then
-    wget -q -O $LSHAFILE $MIRROR/$RSHAFILE
-fi
+MIRROR=https://github.com/cyberark/summon/releases/download
 
 dl()
 {
-    OS=$1
-    ARCH=$2
-    ARCHIVETYPE=$3
-    PLATFORM=${OS}-${ARCH}
-    FILE=summon-${PLATFORM}.${ARCHIVETYPE}
-    URL=$MIRROR/$FILE
+    local ver=$1
+    local lshafile=$2
+    local os=$3
+    local arch=$4
+    local archive_type=$5
+    local platform="${os}-${arch}"
+    local file=summon-${platform}.${archive_type}
+    local url=$MIRROR/$ver/$file
 
-    printf "    # %s\n" $URL
-    printf "    %s: sha256:%s\n" $PLATFORM `grep $FILE $LSHAFILE | awk '{print $1}'`
+    printf "    # %s\n" $url
+    printf "    %s: sha256:%s\n" $platform `grep $file $lshafile | awk '{print $1}'`
 }
 
-printf "  %s:\n" $VER
-dl darwin amd64 tar.gz
-dl linux amd64 tar.gz
-dl windows amd64 zip
+dl_ver() {
+    local ver=$1
+    local lshafile=$DIR/summon-${ver}-SHA256SUMS.txt
 
+    if [ ! -e $lshafile ];
+    then
+        wget -q -O $lshafile $MIRROR/$ver/SHA256SUMS.txt
+    fi
 
+    printf "  %s:\n" $ver
+    dl $ver $lshafile darwin amd64 tar.gz
+    dl $ver $lshafile linux amd64 tar.gz
+    dl $ver $lshafile windows amd64 zip
+}
+
+dl_ver ${1:-v0.8.0}
