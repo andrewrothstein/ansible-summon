@@ -9,7 +9,7 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: check for install
+- name: checking for install in {{ summon_install_dir }}
   become: yes
   stat:
     path: '{{ summon_install_dir }}'
@@ -17,40 +17,40 @@
   register: summon_binary
 - when: not summon_binary.stat.exists
   block:
-    - name: download archive
+    - name: downloading {{ summon_url }}
       become: yes
       become_user: root
       get_url:
         url: '{{ summon_url }}'
-        dest: /tmp/{{ summon_archive }}
+        dest: '{{ summon_tmp_archive }}'
         checksum: '{{ summon_checksum }}'
         mode: 0644
-    - name: mkdir install dir
+    - name: mkdir {{ summon_install_dir }}
       become: yes
       become_user: root
       file:
         path: '{{ summon_install_dir }}'
         state: directory
         mode: 0755
-    - name: unarchive
+    - name: unarchiving {{ summon_tmp_archive }}
       become: yes
       become_user: root
       unarchive:
         remote_src: yes
-        src: /tmp/{{ summon_archive }}
+        src: '{{ summon_tmp_archive }}'
         dest: '{{ summon_install_dir }}'
         creates: '{{ summon_install_dir }}/summon'
   always:
-    - name: cleanup
+    - name: rm {{ summon_tmp_archive }}
       become: yes
       become_user: root
       file:
-        path: /tmp/{{ summon_archive }}
+        path: '{{ summon_tmp_archive }}'
         state: absent
-- name: link
+- name: linking {{ summon_link }} to {{ summon_exe }}
   become: yes
   become_user: root
   file:
-    src: '{{ summon_install_dir }}/summon'
-    dest: '{{ summon_parent_install_dir }}/bin/summon'
+    src: '{{ summon_exe }}'
+    dest: '{{ summon_link }}'
     state: link
