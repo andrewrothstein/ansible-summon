@@ -1,6 +1,6 @@
 andrewrothstein.summon
 =========
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-summon.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-summon)
+![Build Status](https://github.com/andrewrothstein/ansible-summon/actions/workflows/build.yml/badge.svg)
 
 Installs CyberArk's [summon](https://cyberark.github.io/summon)
 
