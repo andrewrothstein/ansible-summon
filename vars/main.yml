@@ -1,9 +1,11 @@
 ---
 # vars file for summon
+summon_os: '{{ ansible_system | lower }}'
+summon_arch: '{{ summon_arch_map[ansible_architecture] }}'
 summon_platform: '{{ summon_os }}-{{ summon_arch }}'
-summon_archive: summon-{{ summon_platform }}.{{ summon_archivetype }}
+summon_archive: summon-{{ summon_platform }}.{{ summon_archivetype | default("tar.gz") }}
 summon_tmp_archive: /tmp/{{ summon_archive }}
-summon_url: '{{ summon_mirror }}/{{ summon_ver }}/{{ summon_archive }}'
+summon_url: '{{ summon_mirror }}/v{{ summon_ver }}/{{ summon_archive }}'
 summon_checksum: '{{ summon_checksums[summon_ver][summon_platform] }}'
 summon_install_dir: '{{ summon_parent_install_dir }}/summon-{{ summon_ver }}'
 summon_exe: '{{ summon_install_dir }}/summon'

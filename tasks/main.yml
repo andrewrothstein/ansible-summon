@@ -1,4 +1,6 @@
 ---
+- include_role:
+    name: andrewrothstein.unarchive-deps
 - name: resolve platform specific vars
   include_vars: '{{ item }}'
   with_first_found:
@@ -10,15 +12,15 @@
       paths:
         - '{{ role_path }}/vars'
 - name: checking for install in {{ summon_install_dir }}
-  become: yes
+  become: true
   stat:
     path: '{{ summon_install_dir }}'
-  changed_when: False
+  changed_when: false
   register: summon_binary
 - when: not summon_binary.stat.exists
   block:
     - name: downloading {{ summon_url }}
-      become: yes
+      become: true
       become_user: root
       get_url:
         url: '{{ summon_url }}'
@@ -26,29 +28,29 @@
         checksum: '{{ summon_checksum }}'
         mode: 0644
     - name: mkdir {{ summon_install_dir }}
-      become: yes
+      become: true
       become_user: root
       file:
         path: '{{ summon_install_dir }}'
         state: directory
         mode: 0755
     - name: unarchiving {{ summon_tmp_archive }}
-      become: yes
+      become: true
       become_user: root
       unarchive:
-        remote_src: yes
+        remote_src: true
         src: '{{ summon_tmp_archive }}'
         dest: '{{ summon_install_dir }}'
         creates: '{{ summon_install_dir }}/summon'
   always:
     - name: rm {{ summon_tmp_archive }}
-      become: yes
+      become: true
       become_user: root
       file:
         path: '{{ summon_tmp_archive }}'
         state: absent
 - name: linking {{ summon_link }} to {{ summon_exe }}
-  become: yes
+  become: true
   become_user: root
   file:
     src: '{{ summon_exe }}'

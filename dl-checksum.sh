@@ -9,13 +9,17 @@ dl()
     local lshafile=$2
     local os=$3
     local arch=$4
-    local archive_type=$5
+    local archive_type=${5:-tar.gz}
     local platform="${os}-${arch}"
     local file=summon-${platform}.${archive_type}
-    local url=$MIRROR/$ver/$file
+    local url=$MIRROR/v$ver/$file
 
-    printf "    # %s\n" $url
-    printf "    %s: sha256:%s\n" $platform `grep $file $lshafile | awk '{print $1}'`
+    local shasum=$(grep $file $lshafile | awk '{print $1}')
+    if [ ! -z $shasum ];
+    then
+        printf "    # %s\n" $url
+        printf "    %s: sha256:%s\n" $platform $shasum
+    fi
 }
 
 dl_ver() {
@@ -24,13 +28,25 @@ dl_ver() {
 
     if [ ! -e $lshafile ];
     then
-        wget -q -O $lshafile $MIRROR/$ver/SHA256SUMS.txt
+        curl -sSLf -o $lshafile $MIRROR/v$ver/SHA256SUMS.txt
     fi
 
-    printf "  %s:\n" $ver
-    dl $ver $lshafile darwin amd64 tar.gz
-    dl $ver $lshafile linux amd64 tar.gz
+    printf "  '%s':\n" $ver
+    dl $ver $lshafile darwin amd64
+    dl $ver $lshafile darwin arm64
+    dl $ver $lshafile linux amd64
+    dl $ver $lshafile solaris amd64
     dl $ver $lshafile windows amd64 zip
 }
 
-dl_ver ${1:-v0.9.0}
+dl_ver 0.7.0
+dl_ver 0.8.0
+dl_ver 0.8.1
+dl_ver 0.8.2
+dl_ver 0.8.3
+dl_ver 0.8.4
+dl_ver 0.9.0
+dl_ver 0.9.1
+dl_ver 0.9.2
+dl_ver 0.9.3
+dl_ver ${1:-0.9.4}
