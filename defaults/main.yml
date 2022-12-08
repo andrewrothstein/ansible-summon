@@ -1,6 +1,6 @@
 ---
 # defaults file for summon
-summon_ver: 0.9.4
+summon_ver: 0.9.5
 
 summon_arch_map:
   aarch64: arm64
@@ -112,3 +112,14 @@ summon_checksums:
     solaris-amd64: sha256:0de38743a63f5708da3dd47c3dcc279153502cda6386b926a957a340af37a304
     # https://github.com/cyberark/summon/releases/download/v0.9.4/summon-windows-amd64.zip
     windows-amd64: sha256:10b6dffdbf2614e60b3891c33d3949b9f28110af8053fd2d49dc8019179b38a0
+  '0.9.5':
+    # https://github.com/cyberark/summon/releases/download/v0.9.5/summon-darwin-amd64.tar.gz
+    darwin-amd64: sha256:9b4ed03fb04361cdeb22c89876b756e02c5c486e42afd5405d404c6c80451bc5
+    # https://github.com/cyberark/summon/releases/download/v0.9.5/summon-darwin-arm64.tar.gz
+    darwin-arm64: sha256:a0b33a5c7f7eda03907da5526dcde64e45a50d2c220ee0b9504107acbb83db89
+    # https://github.com/cyberark/summon/releases/download/v0.9.5/summon-linux-amd64.tar.gz
+    linux-amd64: sha256:f5d120176b75eb3f7e42963b26e0fdc0e434383b9943c8d43a11073ee4c0c13f
+    # https://github.com/cyberark/summon/releases/download/v0.9.5/summon-solaris-amd64.tar.gz
+    solaris-amd64: sha256:bde8b0725defd0009cabf937905fda7acf60575eca5ae513e87953233eca82e3
+    # https://github.com/cyberark/summon/releases/download/v0.9.5/summon-windows-amd64.zip
+    windows-amd64: sha256:cc6a5dfdda55e91e60e9a0d4bb513bbcec91ebde7e39c1cdc890d32c15323862
