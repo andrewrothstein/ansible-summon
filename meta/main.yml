@@ -5,14 +5,14 @@ galaxy_info:
   description: installs CyberArk's summon
   galaxy_tags:
     - development
-  license:
-    - MIT
-  min_ansible_version: 2.0
+  license: MIT
+  min_ansible_version: '2.0'
+  namespace: andrewrothstein
   platforms:
     - name: Alpine
       versions:
         - all
-    - name: Archlinux
+    - name: ArchLinux
       versions:
         - all
     - name: Debian
@@ -21,14 +21,14 @@ galaxy_info:
         - bullseye
     - name: EL
       versions:
-        - 8
-        - 9
+        - '8'
+        - '9'
     - name: Fedora
       versions:
-        - 37
-        - 38
+        - '40'
+        - '41'
     - name: Ubuntu
       versions:
-        - focal
         - jammy
+        - noble
   role_name: summon

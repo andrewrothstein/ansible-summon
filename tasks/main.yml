@@ -1,8 +1,9 @@
 ---
-- include_role:
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
     name: andrewrothstein.unarchivedeps
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -11,48 +12,49 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: checking for install in {{ summon_install_dir }}
+- name: Checking for install in {{ summon_install_dir }}
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ summon_install_dir }}'
   changed_when: false
   register: summon_binary
-- when: not summon_binary.stat.exists
+- name: Downloading and installing summon
+  when: not summon_binary.stat.exists
   block:
-    - name: downloading {{ summon_url }}
+    - name: Downloading {{ summon_url }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ summon_url }}'
         dest: '{{ summon_tmp_archive }}'
         checksum: '{{ summon_checksum }}'
-        mode: 0644
-    - name: mkdir {{ summon_install_dir }}
+        mode: '644'
+    - name: Mkdir {{ summon_install_dir }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ summon_install_dir }}'
         state: directory
-        mode: 0755
-    - name: unarchiving {{ summon_tmp_archive }}
+        mode: '755'
+    - name: Unarchiving {{ summon_tmp_archive }}
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ summon_tmp_archive }}'
         dest: '{{ summon_install_dir }}'
         creates: '{{ summon_install_dir }}/summon'
   always:
-    - name: rm {{ summon_tmp_archive }}
+    - name: Rm {{ summon_tmp_archive }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ summon_tmp_archive }}'
         state: absent
-- name: linking {{ summon_link }} to {{ summon_exe }}
+- name: Linking {{ summon_link }} to {{ summon_exe }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ summon_exe }}'
     dest: '{{ summon_link }}'
     state: link

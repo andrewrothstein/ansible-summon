@@ -1,10 +1,13 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.summon
+  hosts: all
   roles:
-  - role: '{{ playbook_dir }}'
+    - role: '{{ playbook_dir }}'
   tasks:
-  - command: /usr/local/bin/summon --version
-    register: summon_test_output
-  - name: summon --version
-    debug:
-      msg: '{{ summon_test_output.stdout }}'
+    - name: Executing 'summon --version'
+      ansible.builtin.command: summon --version
+      changed_when: false
+      register: summon_test_output
+    - name: Output from 'summon --version'
+      ansible.builtin.debug:
+        msg: '{{ summon_test_output.stdout }}'

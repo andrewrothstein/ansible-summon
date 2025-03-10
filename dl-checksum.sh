@@ -39,4 +39,7 @@ dl_ver() {
     dl $ver $lshafile windows amd64 zip
 }
 
-dl_ver ${1:-0.9.6}
+dl_ver 0.10.0
+dl_ver 0.10.1
+dl_ver 0.10.2
+dl_ver ${1:-0.10.3}

@@ -1,6 +1,6 @@
 ---
 # defaults file for summon
-summon_ver: 0.9.6
+summon_ver: 0.10.3
 
 summon_arch_map:
   aarch64: arm64
@@ -134,3 +134,47 @@ summon_checksums:
     solaris-amd64: sha256:d6dc5faa9e51d986bf8bcafb62b1da65878f68f83fc8784fb0babe51173bec92
     # https://github.com/cyberark/summon/releases/download/v0.9.6/summon-windows-amd64.zip
     windows-amd64: sha256:046c557ff7a8ce1ca889031902458c7a52da725d457049ae09859127d6d23563
+  '0.10.0':
+    # https://github.com/cyberark/summon/releases/download/v0.10.0/summon-darwin-amd64.tar.gz
+    darwin-amd64: sha256:9bfbb822bbc206421e33cc57f720875f8f7587516e8f7c666336185e93480974
+    # https://github.com/cyberark/summon/releases/download/v0.10.0/summon-darwin-arm64.tar.gz
+    darwin-arm64: sha256:e3f77c52ec7d9c4153741aa4e474007738333ae7ebb12ec6a303d4fc7e7133aa
+    # https://github.com/cyberark/summon/releases/download/v0.10.0/summon-linux-amd64.tar.gz
+    linux-amd64: sha256:70ed813bdeb59af501e9fceef5c317c8c6122da0ab2deebf502b42ed946c20c1
+    # https://github.com/cyberark/summon/releases/download/v0.10.0/summon-solaris-amd64.tar.gz
+    solaris-amd64: sha256:619f415d3bbd5ef9f3a706fca80c1dc68d9754587c420ef1738c2216fd84c818
+    # https://github.com/cyberark/summon/releases/download/v0.10.0/summon-windows-amd64.zip
+    windows-amd64: sha256:59e92107fe7ee7ac47b8768b057b81b1f6ffaed72f9e4766b3182960f477f3e4
+  '0.10.1':
+    # https://github.com/cyberark/summon/releases/download/v0.10.1/summon-darwin-amd64.tar.gz
+    darwin-amd64: sha256:675ce2aaaebe6688b48c5c41b9e7dd734ef063f02c9870af0856cdd6f2ef0ba4
+    # https://github.com/cyberark/summon/releases/download/v0.10.1/summon-darwin-arm64.tar.gz
+    darwin-arm64: sha256:87eea581081531b8fa00855cfc4456e3948d3bf236da80c7957c48306cb490df
+    # https://github.com/cyberark/summon/releases/download/v0.10.1/summon-linux-amd64.tar.gz
+    linux-amd64: sha256:db44cdbc1405f0eb963c89ef511715eed4f341802ca99a00e669431dd679643d
+    # https://github.com/cyberark/summon/releases/download/v0.10.1/summon-solaris-amd64.tar.gz
+    solaris-amd64: sha256:b355b30a6e39f30c50212fa4bb7f7c0723346c67445514ca017b01dbadccff5c
+    # https://github.com/cyberark/summon/releases/download/v0.10.1/summon-windows-amd64.zip
+    windows-amd64: sha256:78ea5028ce794b293b87207915e77d73481d6f9f1ed6ac96ee2ff39e0513ec9e
+  '0.10.2':
+    # https://github.com/cyberark/summon/releases/download/v0.10.2/summon-darwin-amd64.tar.gz
+    darwin-amd64: sha256:99e234d112c4c8580c3c18c37f1c70ae2fbe0ec75720d793e081983ded490d61
+    # https://github.com/cyberark/summon/releases/download/v0.10.2/summon-darwin-arm64.tar.gz
+    darwin-arm64: sha256:c5462b7148244b80f6587a6a396834d641a37f2d24a64d34bd9ab80b3bd5f920
+    # https://github.com/cyberark/summon/releases/download/v0.10.2/summon-linux-amd64.tar.gz
+    linux-amd64: sha256:fd5d8c9453447df1e42565a5018532a7c7a7b5286363468fe14fd46d032b7c2b
+    # https://github.com/cyberark/summon/releases/download/v0.10.2/summon-solaris-amd64.tar.gz
+    solaris-amd64: sha256:ff6cc4715d2ee9742e81a1bda57ae29db459ddcc5ad36029e68889aaeabcafd3
+    # https://github.com/cyberark/summon/releases/download/v0.10.2/summon-windows-amd64.zip
+    windows-amd64: sha256:bbdacd34fbdf822f2aa54d48acde792581a7ebb4477241b239c74e0ec7a24dca
+  '0.10.3':
+    # https://github.com/cyberark/summon/releases/download/v0.10.3/summon-darwin-amd64.tar.gz
+    darwin-amd64: sha256:8721b643ea6e7e9d9b9413e575a2a344b9c8f9b3e27eb570b9ae2ba3c1e23667
+    # https://github.com/cyberark/summon/releases/download/v0.10.3/summon-darwin-arm64.tar.gz
+    darwin-arm64: sha256:b35ba69141d22fe3aae47fc6145d44187ef9c7f6bb73d8ca1fefd754a2f53442
+    # https://github.com/cyberark/summon/releases/download/v0.10.3/summon-linux-amd64.tar.gz
+    linux-amd64: sha256:08493bbe30f430d9664cdf7f87b5768ffd702cd0b8595ee7061ccc784fe16062
+    # https://github.com/cyberark/summon/releases/download/v0.10.3/summon-solaris-amd64.tar.gz
+    solaris-amd64: sha256:f07af3169f99b1b1dc46d7c45b5ff4c95693447a64d0f0dcc53e2c7b6407589b
+    # https://github.com/cyberark/summon/releases/download/v0.10.3/summon-windows-amd64.zip
+    windows-amd64: sha256:a3cabc454a0ab4639f1c8fb93438ea60348c18369a30a50da0d5365fd4667e13
